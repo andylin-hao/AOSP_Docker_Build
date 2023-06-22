@@ -22,4 +22,4 @@ cd /src
 source build/envsetup.sh
 lunch
 ```
-to configure and build the AOSP/Android-x86 sources.
+to configure and build the AOSP/Android-x86 sources. The USB device mapping also allows you to use adb and fastboot to flash your mobile devices.
