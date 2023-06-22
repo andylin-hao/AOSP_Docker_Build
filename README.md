@@ -1,7 +1,7 @@
 # AOSP_Docker_Build
 This is a Dockerfile for the build environment of AOSP and Android-x86. 
 You can directly pull the docker image from docker hub via the [image here](https://hub.docker.com/repository/docker/yoda117/aosp_build/). 
-The Dockerfile is a modified version from [AOSP Docker](https://android.googlesource.com/platform/build/+/master/tools/docker) with more up-to-date OS and dependencies,
+The Dockerfile is a modified version from [AOSP Docker](https://android.googlesource.com/platform/build/+/master/tools/docker) with a more up-to-date OS version and dependencies,
   as well as adaptations for Android-x86 building.
   
 You can build the Dockerfile exactly the same as AOSP Docker using the following commands:
