@@ -6,14 +6,10 @@ ARG username
 RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
 RUN sed -i "s@http://.*security.ubuntu.com@http://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
 
-# Make sure the base image is up to date
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update
 
-# Using separate RUNs here allows Docker to chache each update
 RUN DEBIAN_FRONTEND="noninteractive" apt-get upgrade -y
 
-
-# Install the packages needed for the build
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y git-core gnupg flex bison build-essential
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y	zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y	x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip
@@ -29,7 +25,6 @@ RUN mkdir ~/.gnupg && chmod 600 ~/.gnupg && echo "disable-ipv6" >> ~/.gnupg/dirm
 RUN curl -o /usr/local/bin/repo https://storage.googleapis.com/git-repo-downloads/repo \
  && chmod a+x /usr/local/bin/repo
 
-# Create the home directory for the build user
 RUN groupadd -g $groupid $username \
  && useradd -m -s /bin/bash -u $userid -g $groupid $username \
  && echo "$username:$username" | chpasswd && adduser $username sudo
@@ -43,7 +38,6 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
     && chown -R $username /commandhistory \
     && echo "$SNIPPET" >> "/home/$username/.bashrc"
 
-# Create a directory which we can use to build the AOSP
 RUN mkdir /aosp && chown $userid:$groupid /aosp && chmod ug+s /aosp
 
 WORKDIR /
