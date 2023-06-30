@@ -6,9 +6,7 @@ The Dockerfile is a modified version from [AOSP Docker](https://android.googleso
   
 You can build the Dockerfile exactly the same as AOSP Docker using the following commands:
 ```
-# Copy your host gitconfig, or create a stripped down version
-$ cp ~/.gitconfig gitconfig
-$ docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) -t aosp_build .
+docker build --build-arg userid=$(id -u) --build-arg groupid=$(id -g) --build-arg username=$(id -un) -t aosp_build .
 ```
 To run the docker, use
 ```
