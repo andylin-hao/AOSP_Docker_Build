@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y git-core gnupg flex biso
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y	zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y	x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y	fontconfig libncurses5 procps rsync flex m4 openjdk-8-jdk lib32stdc++6 libelf-dev mtools libssl-dev 
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y python-enum34 python3-mako syslinux-utils sudo bc genisoimage dosfstools kmod adb git-lfs
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y python-enum34 python3-mako syslinux-utils sudo bc genisoimage dosfstools kmod adb git-lfs vim openssh-server
 
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 1
 
@@ -37,8 +37,6 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
     && touch /commandhistory/.bash_history \
     && chown -R $username /commandhistory \
     && echo "$SNIPPET" >> "/home/$username/.bashrc"
-
-RUN mkdir /aosp && chown $userid:$groupid /aosp && chmod ug+s /aosp
 
 WORKDIR /
 USER $username
